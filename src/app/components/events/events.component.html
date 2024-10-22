@@ -1,0 +1,38 @@
+<section class="container flex items-start justify-between mt-12">
+  <div>
+    <h2 class="mb-6 text-2xl font-bold">Eventos creados</h2>
+    <ul class="flex flex-col gap-4 text-left">
+      <li *ngFor="let event of events">
+        {{ event.eventType }} - Código: {{ event.code }} <br />
+        <button (click)="selectGifts(event.id)">Elegir Regalos</button>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h2 class="mb-6 text-2xl font-bold">Crear un nuevo evento</h2>
+    <form (ngSubmit)="createEvent()" class="mt-0">
+      <div class="input-container">
+        <label for="tipoEvento">Tipo de Evento:</label>
+        <input [(ngModel)]="eventType" id="tipoEvento" name="tipoEvento" required type="text" />
+      </div>
+      <div class="input-container">
+        <label for="lugar">Lugar:</label>
+        <input [(ngModel)]="location" id="lugar" name="lugar" required type="text" />
+      </div>
+      <div class="input-container">
+        <label for="fecha">Fecha:</label>
+        <input [(ngModel)]="date" id="fecha" name="fecha" required type="date" />
+      </div>
+      <div class="input-container">
+        <label for="hora">Hora:</label>
+        <input [(ngModel)]="time" id="hora" name="hora" required type="time" />
+      </div>
+      <div class="input-container">
+        <label for="descripcion">Descripción:</label>
+        <textarea [(ngModel)]="description" id="descripcion" name="descripcion" required></textarea>
+      </div>
+      <button type="submit">Crear Evento</button>
+    </form>
+  </div>
+</section>

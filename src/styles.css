@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+@import "normalize.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Roboto", sans-serif;
+  @apply antialiased;
+}
+
+label {
+  @apply text-base font-semibold;
+}
+
+input,
+textarea {
+  @apply border border-gray-800 rounded-md py-2 px-3 text-sm;
+  &:focus {
+    @apply border-blue-500 outline-none ring-blue-400 ring-1;
+  }
+}
+
+form {
+  @apply flex flex-col items-center gap-4 p-4 mx-auto mt-12 border border-gray-400 rounded-md w-96;
+}
+
+button,
+.button {
+  @apply bg-blue-500 text-white py-2 px-3 font-medium uppercase rounded-md;
+}
+
+.input-container {
+  @apply flex flex-col w-full gap-2;
+}

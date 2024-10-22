@@ -1,0 +1,47 @@
+<form (ngSubmit)="ingresarComoInvitado()">
+  <div class="input-container">
+    <label for="codigo">Código del Evento:</label>
+    <input
+      [(ngModel)]="eventCode"
+      id="codigo"
+      name="codigoEvento"
+      required
+      type="text"
+    />
+  </div>
+
+  <div class="input-container">
+    <label for="nombre">Nombre:</label>
+    <input
+      [(ngModel)]="nombreInvitado"
+      id="nombre"
+      name="nombreInvitado"
+      required
+      type="text"
+    />
+  </div>
+
+  <div class="input-container">
+    <label for="apellido">Apellido:</label>
+    <input
+      [(ngModel)]="apellidoInvitado"
+      id="apellido"
+      name="apellidoInvitado"
+      required
+      type="text"
+    />
+  </div>
+
+  <div class="input-container">
+    <label for="dni">DNI:</label>
+    <input
+      [(ngModel)]="dniInvitado"
+      id="dni"
+      name="dniInvitado"
+      required
+      type="text"
+    />
+  </div>
+
+  <button type="submit">Ingresar</button>
+</form>

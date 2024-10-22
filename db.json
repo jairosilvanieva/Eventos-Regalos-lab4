@@ -1,0 +1,155 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "jairo antonio",
+      "email": "jairo_s_22@hotmail.com",
+      "password": "1234",
+      "events": []
+    },
+    {
+      "id": "2",
+      "name": "jairo",
+      "email": "j@s",
+      "password": "1234",
+      "events": []
+    },
+    {
+      "id": "br7051y0r",
+      "name": "Nazareno Oviedo",
+      "email": "nazarenooviedo@gmail.com",
+      "password": "1234",
+      "events": []
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "eventType": "cumpleaños",
+      "location": "mii casa",
+      "date": "2024-10-11",
+      "time": "18:26",
+      "description": "",
+      "code": "OQRSQPQ4",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "eventType": "aaaa",
+      "location": "mii caadssa",
+      "date": "2024-10-11",
+      "time": "18:26",
+      "description": "",
+      "code": "PQRSQPQ5",
+      "userId": "1"
+    },
+    {
+      "id": "pdwsa8zq4",
+      "eventType": "Cumple",
+      "location": "Mar del Plata",
+      "date": "2024-10-19",
+      "time": "20:32",
+      "description": "AAAAAAA",
+      "code": "M62O2AA2",
+      "userId": "br7051y0r"
+    },
+    {
+      "id": "79mvuzxuy",
+      "eventType": "Cumple",
+      "location": "Mar del Plata",
+      "date": "2024-10-19",
+      "time": "20:32",
+      "description": "AAAAAAA",
+      "code": "QU88DKO7",
+      "userId": "br7051y0r"
+    }
+  ],
+  "gifts": [
+    {
+      "id": "1",
+      "name": "pelota",
+      "description": "pelota",
+      "isSelected": true,
+      "eventId": "1"
+    },
+    {
+      "id": "zzwtg2wu3",
+      "name": "pepe",
+      "description": "dsfsdfsdfs",
+      "isSelected": true,
+      "eventId": "1"
+    },
+    {
+      "id": "bwpgdiaxt",
+      "name": "bicicleta",
+      "description": "123",
+      "isSelected": true,
+      "eventId": "1"
+    },
+    {
+      "id": "x20hz9078",
+      "name": "testRegalo",
+      "description": "testRegalo",
+      "isSelected": true,
+      "eventId": "2"
+    },
+    {
+      "id": "9t1p5xhx3",
+      "name": "testRegaloa",
+      "description": "testRegaloa",
+      "isSelected": false,
+      "eventId": "2"
+    },
+    {
+      "id": "6251ysl58",
+      "name": "testRegaloa2",
+      "description": "testRegaloa2",
+      "isSelected": false,
+      "eventId": "2"
+    },
+    {
+      "id": "7yxv0oumb",
+      "name": "aa",
+      "description": "ss",
+      "isSelected": false,
+      "eventId": "2"
+    },
+    {
+      "id": "94nk5ovpr",
+      "name": "pelota",
+      "description": "sadsadsada",
+      "isSelected": false,
+      "eventId": "1"
+    }
+  ],
+  "guests": [
+    {
+      "id": "f193",
+      "nombre": "rulo",
+      "apellido": "rulito",
+      "dni": "1234",
+      "codigoEvento": "OQRSQPQ4"
+    },
+    {
+      "id": "0355",
+      "nombre": "Nazareno",
+      "apellido": "Oviedo",
+      "dni": "1234",
+      "eventId": "1"
+    },
+    {
+      "id": "7c6d",
+      "nombre": "jairo",
+      "apellido": "",
+      "dni": "",
+      "eventId": "1"
+    },
+    {
+      "id": "d34e",
+      "nombre": "mariano",
+      "apellido": "",
+      "dni": "",
+      "eventId": "1"
+    }
+  ]
+}

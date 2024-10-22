@@ -1,0 +1,16 @@
+<h2>Detalles del Evento</h2>
+<p><strong>Descripción:</strong> {{ event.description }}</p>
+<p><strong>Fecha:</strong> {{ event.date }}</p>
+<p><strong>Hora:</strong> {{ event.time }}</p>
+<p><strong>Lugar:</strong> {{ event.location }}</p>
+<p><strong>Tipo de Evento:</strong> {{ event.eventType }}</p>
+
+<h3>Lista de Regalos</h3>
+<ul>
+  <li *ngFor="let gift of gifts">
+    <p>{{ gift.name }} - {{ gift.description }}</p>
+    <button [disabled]="gift.isSelected" (click)="selectGift(gift)">
+      {{ gift.isSelected ? "Seleccionado" : "Seleccionar" }}
+    </button>
+  </li>
+</ul>

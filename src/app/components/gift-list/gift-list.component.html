@@ -1,0 +1,80 @@
+<section class="container flex items-start justify-between mt-12">
+  <div>
+    <h2 class="mb-6 text-2xl font-bold">Lista de Regalos</h2>
+    <ul>
+      <li *ngFor="let gift of gifts">
+        {{ gift.name }} - {{ gift.description }}
+      </li>
+    </ul>
+
+    <div class="pr-4 mt-6">
+      <!-- Campo de búsqueda -->
+      <div class="input-container">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="Buscar productos..."
+        />
+        <button (click)="onSearch()">Buscar</button>
+      </div>
+
+      <!-- Mostrar un mensaje de carga -->
+      <div *ngIf="isLoading">
+        <p>Cargando productos...</p>
+      </div>
+
+      <!-- Listado de productos -->
+      <div *ngIf="products.length > 0; else noProducts">
+        <ul class="flex flex-col items-center w-full gap-4 mt-6">
+          <li
+            *ngFor="let product of products"
+            class="flex flex-col items-center w-full gap-2 p-4 border border-gray-800 rounded-md"
+          >
+            <img [src]="product.thumbnail" alt="{{ product.title }}" />
+            <h3>{{ product.title }} - ({{ product.id }})</h3>
+            <p>Price: {{ product.price | currency }}</p>
+            <div class="flex gap-2">
+              <a [href]="product.permalink" class="button" target="_blank"
+                >Ver Producto</a
+              >
+              <button>Agregar Producto</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mensaje si no hay productos -->
+      <ng-template #noProducts>
+        <p>No se encontraron productos.</p>
+      </ng-template>
+    </div>
+  </div>
+  <div>
+    <h2 class="mb-6 text-2xl font-bold">Agregar un nuevo regalo</h2>
+    <form (ngSubmit)="addGift()">
+      <div class="input-container">
+        <label for="nombre">Nombre del regalo:</label>
+        <input
+          [(ngModel)]="newGift.name"
+          id="nombre"
+          name="nombre"
+          required
+          type="text"
+        />
+      </div>
+
+      <div class="input-container">
+        <label for="descripcion">Descripción:</label>
+        <input
+          [(ngModel)]="newGift.description"
+          id="descripcion"
+          name="descripcion"
+          required
+          type="text"
+        />
+      </div>
+
+      <button type="submit">Agregar Regalo</button>
+    </form>
+  </div>
+</section>
