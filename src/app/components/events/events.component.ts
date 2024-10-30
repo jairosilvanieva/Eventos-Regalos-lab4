@@ -10,7 +10,7 @@ import { Event } from '../../interfaces';
   styleUrls: ['./events.component.css'],
 })
 export class EventsComponent implements OnInit {
-  // Declaración de propiedades del componente para almacenar datos del evento y lista de eventos
+  
   date: string = '';
   description: string = '';
   eventId: string = '';
@@ -26,7 +26,7 @@ export class EventsComponent implements OnInit {
     private router: Router
   ) {}
 
-  // Inicializa el componente y carga los eventos si hay un usuario autenticado
+  
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
 
@@ -35,14 +35,14 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  // Carga los eventos del usuario actual
+ 
   loadEvents(): void {
     this.eventsService.getEventsByHost(this.userId).subscribe((data: any[]) => {
       this.events = data;
     });
   }
 
-  // Crea un nuevo evento
+  
   createEvent() {
     const userId = this.authService.getUserId();
     if (userId) {
@@ -70,12 +70,12 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  // Genera un ID único para un nuevo evento
+  
   generateUniqueId(): string {
     return Math.random().toString(36).substr(2, 9);
   }
 
-  // Genera un código único para un nuevo evento
+  
   generateUniqueCode(): string {
     let uniqueCode = '';
     let codeExists = true;
@@ -88,12 +88,12 @@ export class EventsComponent implements OnInit {
     return uniqueCode;
   }
 
-  // Navega a la página de selección de regalos para un evento específico
+  
   selectGifts(eventId: string) {
     this.router.navigate(['/events', eventId, 'gifts']);
   }
 
-  // Cierra la sesión del usuario actual
+  
   logout() {
     this.authService.logout();
   }

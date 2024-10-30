@@ -1,155 +1,147 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "jairo antonio",
-      "email": "jairo_s_22@hotmail.com",
-      "password": "1234",
-      "events": []
-    },
-    {
-      "id": "2",
+      "id": "dc96",
       "name": "jairo",
-      "email": "j@s",
-      "password": "1234",
-      "events": []
+      "email": "jairosn22@gmail.com",
+      "password": "1234"
     },
     {
-      "id": "br7051y0r",
-      "name": "Nazareno Oviedo",
-      "email": "nazarenooviedo@gmail.com",
-      "password": "1234",
-      "events": []
+      "id": "3404",
+      "name": "agustin",
+      "email": "agustin@gmail.com",
+      "password": "1234"
     }
   ],
   "events": [
     {
-      "id": "1",
-      "eventType": "cumpleaños",
-      "location": "mii casa",
-      "date": "2024-10-11",
-      "time": "18:26",
-      "description": "",
-      "code": "OQRSQPQ4",
-      "userId": "1"
+      "id": "ru2g6la0x",
+      "eventType": "cumpleanos",
+      "location": "brown 2160",
+      "date": "2024-10-31",
+      "time": "23:06",
+      "description": "traer la bebida",
+      "code": "PES5WVQF",
+      "userId": "dc96"
     },
     {
-      "id": "2",
-      "eventType": "aaaa",
-      "location": "mii caadssa",
-      "date": "2024-10-11",
-      "time": "18:26",
-      "description": "",
-      "code": "PQRSQPQ5",
-      "userId": "1"
-    },
-    {
-      "id": "pdwsa8zq4",
-      "eventType": "Cumple",
-      "location": "Mar del Plata",
-      "date": "2024-10-19",
-      "time": "20:32",
-      "description": "AAAAAAA",
-      "code": "M62O2AA2",
-      "userId": "br7051y0r"
-    },
-    {
-      "id": "79mvuzxuy",
-      "eventType": "Cumple",
-      "location": "Mar del Plata",
-      "date": "2024-10-19",
-      "time": "20:32",
-      "description": "AAAAAAA",
-      "code": "QU88DKO7",
-      "userId": "br7051y0r"
+      "id": "yfu5snhxz",
+      "eventType": "cumpleanos",
+      "location": "brown 2160",
+      "date": "2024-10-25",
+      "time": "22:06",
+      "description": "traer la bebida",
+      "code": "U5VEUC4R",
+      "userId": "3404"
     }
   ],
   "gifts": [
     {
-      "id": "1",
-      "name": "pelota",
-      "description": "pelota",
+      "id": "fe9gsxxt3",
+      "name": "Pelota Futsal Munich Rumba Medio Pique Cámara De Butilo Color Blanco",
+      "description": "Producto de Mercado Libre - Precio: 31496",
       "isSelected": true,
-      "eventId": "1"
+      "eventId": "ru2g6la0x",
+      "permalink": "https://www.mercadolibre.com.ar/pelota-futsal-munich-rumba-medio-pique-camara-de-butilo-color-blanco/p/MLA24455404#wid=MLA1384532217&sid=unknown",
+      "selectedBy": {
+        "nombre": "sadsad",
+        "apellido": "",
+        "dni": ""
+      }
     },
     {
-      "id": "zzwtg2wu3",
-      "name": "pepe",
-      "description": "dsfsdfsdfs",
+      "id": "wskib6em4",
+      "name": "Pelota Esferodinamia Everlast Yoga Gym Pilates 75cm Inflador Color Gris Oscuro",
+      "description": "Producto de Mercado Libre - Precio: 34500",
+      "isSelected": false,
+      "eventId": "ru2g6la0x",
+      "permalink": "https://www.mercadolibre.com.ar/pelota-esferodinamia-everlast-yoga-gym-pilates-75cm-inflador-color-gris-oscuro/p/MLA36970464#wid=MLA1446267831&sid=unknown"
+    },
+    {
+      "id": "vovsusjhw",
+      "name": "Pelota Futsal Munich Rumba Medio Pique Cámara De Butilo Color Blanco",
+      "description": "Producto de Mercado Libre - Precio: 31496",
       "isSelected": true,
-      "eventId": "1"
+      "eventId": "ru2g6la0x",
+      "permalink": "https://www.mercadolibre.com.ar/pelota-futsal-munich-rumba-medio-pique-camara-de-butilo-color-blanco/p/MLA24455404#wid=MLA1384532217&sid=unknown",
+      "selectedBy": {
+        "nombre": "sdadasd",
+        "apellido": "sadsadsad",
+        "dni": "sadsadsa"
+      }
     },
     {
-      "id": "bwpgdiaxt",
-      "name": "bicicleta",
-      "description": "123",
+      "id": "9j2tu0qrs",
+      "name": "Nueva Fiat Fastback Suv 2024 Permuto Usado 2023 2022 Ms",
+      "description": "Producto de Mercado Libre - Precio: 19950000",
+      "isSelected": false,
+      "eventId": "ru2g6la0x",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1943799736-nueva-fiat-fastback-suv-2024-permuto-usado-2023-2022-ms-_JM"
+    },
+    {
+      "id": "m0cd7uscr",
+      "name": "Ford Focus 2.0 Se Mt -eg- (no Titanium, No Powershift)",
+      "description": "Producto de Mercado Libre - Precio: 18000000",
       "isSelected": true,
-      "eventId": "1"
+      "eventId": "ru2g6la0x",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1457618651-ford-focus-20-se-mt-eg-no-titanium-no-powershift-_JM",
+      "selectedBy": {
+        "nombre": "sadas",
+        "apellido": "",
+        "dni": ""
+      }
     },
     {
-      "id": "x20hz9078",
-      "name": "testRegalo",
-      "description": "testRegalo",
+      "id": "2u29txe0b",
+      "name": "Peugeot 2008 Gt Oferta Stock Inmediato Retiro Ya Ys",
+      "description": "Producto de Mercado Libre - Precio: 42250000",
       "isSelected": true,
-      "eventId": "2"
+      "eventId": "yfu5snhxz",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1457630329-peugeot-2008-gt-oferta-stock-inmediato-retiro-ya-ys-_JM",
+      "selectedBy": {
+        "nombre": "jairo",
+        "apellido": "",
+        "dni": ""
+      }
     },
     {
-      "id": "9t1p5xhx3",
-      "name": "testRegaloa",
-      "description": "testRegaloa",
+      "id": "6iqf3nn7r",
+      "name": "Liquidacion Fiat Toro Volcano Mejor Precio Promocion Sv    ",
+      "description": "Producto de Mercado Libre - Precio: 35700",
       "isSelected": false,
-      "eventId": "2"
+      "eventId": "yfu5snhxz",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1945552210-liquidacion-fiat-toro-volcano-mejor-precio-promocion-sv-_JM"
     },
     {
-      "id": "6251ysl58",
-      "name": "testRegaloa2",
-      "description": "testRegaloa2",
+      "id": "mxd16at5v",
+      "name": "Chevrolet Montana Premier#7",
+      "description": "Producto de Mercado Libre - Precio: 28392547",
       "isSelected": false,
-      "eventId": "2"
-    },
-    {
-      "id": "7yxv0oumb",
-      "name": "aa",
-      "description": "ss",
-      "isSelected": false,
-      "eventId": "2"
-    },
-    {
-      "id": "94nk5ovpr",
-      "name": "pelota",
-      "description": "sadsadsada",
-      "isSelected": false,
-      "eventId": "1"
+      "eventId": "yfu5snhxz",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1945552190-chevrolet-montana-premier7-_JM"
     }
   ],
   "guests": [
     {
-      "id": "f193",
-      "nombre": "rulo",
-      "apellido": "rulito",
-      "dni": "1234",
-      "codigoEvento": "OQRSQPQ4"
+      "id": "3fb1",
+      "nombre": "sadsad",
+      "apellido": "",
+      "dni": "",
+      "eventId": "ru2g6la0x"
     },
     {
-      "id": "0355",
-      "nombre": "Nazareno",
-      "apellido": "Oviedo",
-      "dni": "1234",
-      "eventId": "1"
+      "id": "7ee0",
+      "nombre": "sdadasd",
+      "apellido": "sadsadsad",
+      "dni": "sadsadsa",
+      "eventId": "ru2g6la0x"
     },
     {
-      "id": "7c6d",
+      "id": "e05a",
       "nombre": "jairo",
       "apellido": "",
       "dni": "",
-      "eventId": "1"
-    },
-    {
-      "id": "d34e",
-      "nombre": "mariano",
-      "apellido": "",
-      "dni": "",
-      "eventId": "1"
+      "eventId": "yfu5snhxz"
     }
   ]
 }

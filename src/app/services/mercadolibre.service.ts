@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MercadoLibreService {
-  private apiUrl = 'https://api.mercadolibre.com/sites/MLA/search?q='; // API base de MercadoLibre (MLA es para Argentina)
+  private apiUrl = 'https://api.mercadolibre.com/sites/MLA/search?q='; 
 
   constructor(private http: HttpClient) {}
 
-  // Método para buscar productos por query (término de búsqueda)
+  
   searchProducts(query: string): Observable<any> {
     return this.http.get(`${this.apiUrl}${query}`);
   }

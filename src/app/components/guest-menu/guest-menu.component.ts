@@ -9,7 +9,7 @@ import { Event, Gift } from '../../interfaces';
   styleUrls: ['./guest-menu.component.css'],
 })
 export class GuestMenuComponent implements OnInit {
-  // Objeto para almacenar los datos del evento
+  
   event: Event = {
     id: '',
     eventType: '',
@@ -18,52 +18,68 @@ export class GuestMenuComponent implements OnInit {
     time: '',
     description: '',
     code: '',
-    userId: ''
+    userId: '',
   };
-  // Array para almacenar los regalos asociados al evento
+
+  
   gifts: Gift[] = [];
 
   constructor(
     private eventsService: EventsService,
-    private giftsService: GiftsService,
+    private giftsService: GiftsService
   ) {}
 
   ngOnInit(): void {
-    // Obtener el código del evento del almacenamiento local
+    
     const eventCode = localStorage.getItem('eventCode');
     if (eventCode) {
-      this.loadEvent(eventCode);
+      this.loadEvent(eventCode); 
     }
   }
 
-  // Cargar los datos del evento usando el código
+ 
   loadEvent(code: string): void {
     this.eventsService.verifyEventCode(code).subscribe((events: any[]) => {
       if (events.length > 0) {
         this.event = events[0];
-        this.loadGifts(this.event.id); // Cargar regalos asociados al evento
+        this.loadGifts(this.event.id); 
       } else {
         alert('Evento no encontrado');
       }
     });
   }
 
-  // Cargar los regalos asociados al evento
+  
   loadGifts(eventId: string): void {
     this.giftsService.getGiftsByEvent(eventId).subscribe((gifts: any[]) => {
       this.gifts = gifts;
     });
   }
 
-  // Seleccionar un regalo
+  
   selectGift(gift: any): void {
     if (!gift.isSelected) {
+     
+      const invitado = {
+        nombre: localStorage.getItem('nombreInvitado'),
+        apellido: localStorage.getItem('apellidoInvitado'),
+        dni: localStorage.getItem('dniInvitado'),
+      };
+
       gift.isSelected = true;
+      gift.selectedBy = invitado; 
+
       this.giftsService.updateGift(gift).subscribe(() => {
         alert('Regalo seleccionado exitosamente');
+        this.loadGifts(this.event.id); 
       });
     } else {
       alert('Este regalo ya ha sido seleccionado.');
     }
+  }
+
+  
+  verProducto(permalink: string): void {
+    window.open(permalink, '_blank');
   }
 }

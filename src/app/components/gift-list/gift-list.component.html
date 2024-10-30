@@ -1,80 +1,78 @@
-<section class="container flex items-start justify-between mt-12">
-  <div>
-    <h2 class="mb-6 text-2xl font-bold">Lista de Regalos</h2>
-    <ul>
-      <li *ngFor="let gift of gifts">
-        {{ gift.name }} - {{ gift.description }}
-      </li>
-    </ul>
+<section class="container flex flex-col justify-between mt-12">
+  
+  <div class="w-full mb-8">
+    <h2 class="mb-6 text-2xl font-bold">Buscar productos</h2>
 
-    <div class="pr-4 mt-6">
-      <!-- Campo de búsqueda -->
-      <div class="input-container">
-        <input
-          type="text"
-          [(ngModel)]="searchTerm"
-          placeholder="Buscar productos..."
-        />
-        <button (click)="onSearch()">Buscar</button>
-      </div>
-
-      <!-- Mostrar un mensaje de carga -->
-      <div *ngIf="isLoading">
-        <p>Cargando productos...</p>
-      </div>
-
-      <!-- Listado de productos -->
-      <div *ngIf="products.length > 0; else noProducts">
-        <ul class="flex flex-col items-center w-full gap-4 mt-6">
-          <li
-            *ngFor="let product of products"
-            class="flex flex-col items-center w-full gap-2 p-4 border border-gray-800 rounded-md"
-          >
-            <img [src]="product.thumbnail" alt="{{ product.title }}" />
-            <h3>{{ product.title }} - ({{ product.id }})</h3>
-            <p>Price: {{ product.price | currency }}</p>
-            <div class="flex gap-2">
-              <a [href]="product.permalink" class="button" target="_blank"
-                >Ver Producto</a
-              >
-              <button>Agregar Producto</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Mensaje si no hay productos -->
-      <ng-template #noProducts>
-        <p>No se encontraron productos.</p>
-      </ng-template>
+    
+    <div class="input-container mb-4">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar productos..."
+        class="border p-2 w-full"
+      />
+      <button (click)="onSearch()" class="bg-blue-500 text-white p-2 mt-2">
+        Buscar
+      </button>
     </div>
+
+   
+    <div *ngIf="isLoading" class="mt-4">
+      <p>Cargando productos...</p>
+    </div>
+
+   
+    <div *ngIf="products.length > 0; else noProducts" class="mt-6">
+      <ul class="flex flex-col gap-4">
+        <li
+          *ngFor="let product of products"
+          class="flex flex-col p-4 border border-gray-800 rounded-md"
+        >
+          <img [src]="product.thumbnail" alt="{{ product.title }}" />
+          <h3>{{ product.title }} - ({{ product.id }})</h3>
+          <p>Precio: {{ product.price | currency }}</p>
+          <div class="flex gap-2">
+            <a [href]="product.permalink" class="button" target="_blank">Ver Producto</a>
+            <button (click)="addProductAsGift(product)">Agregar Producto</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+   
+    <ng-template #noProducts>
+      <p>No se encontraron productos.</p>
+    </ng-template>
   </div>
-  <div>
-    <h2 class="mb-6 text-2xl font-bold">Agregar un nuevo regalo</h2>
-    <form (ngSubmit)="addGift()">
-      <div class="input-container">
-        <label for="nombre">Nombre del regalo:</label>
-        <input
-          [(ngModel)]="newGift.name"
-          id="nombre"
-          name="nombre"
-          required
-          type="text"
-        />
-      </div>
 
-      <div class="input-container">
-        <label for="descripcion">Descripción:</label>
-        <input
-          [(ngModel)]="newGift.description"
-          id="descripcion"
-          name="descripcion"
-          required
-          type="text"
-        />
-      </div>
-
-      <button type="submit">Agregar Regalo</button>
-    </form>
+ 
+  <div class="w-full">
+    <h2 class="mb-6 text-2xl font-bold">Lista de Regalos</h2>
+    <table class="table-auto w-full border-collapse border border-gray-800">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-800 px-4 py-2">Nombre del Regalo</th>
+          <th class="border border-gray-800 px-4 py-2">Descripción</th>
+          <th class="border border-gray-800 px-4 py-2">Estado</th>
+          <th class="border border-gray-800 px-4 py-2">Invitado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gift of gifts">
+          <td class="border border-gray-800 px-4 py-2">{{ gift.name }}</td>
+          <td class="border border-gray-800 px-4 py-2">{{ gift.description }}</td>
+          <td class="border border-gray-800 px-4 py-2">
+            <span *ngIf="!gift.isSelected">Disponible</span>
+            <span *ngIf="gift.isSelected">Seleccionado</span>
+          </td>
+          <td class="border border-gray-800 px-4 py-2">
+            <span *ngIf="gift.isSelected">
+              {{ gift.selectedBy?.nombre }} {{ gift.selectedBy?.apellido }}
+            </span>
+            <span *ngIf="!gift.isSelected">N/A</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>

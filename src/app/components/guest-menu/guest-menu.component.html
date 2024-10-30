@@ -1,16 +1,43 @@
-<h2>Detalles del Evento</h2>
-<p><strong>Descripción:</strong> {{ event.description }}</p>
-<p><strong>Fecha:</strong> {{ event.date }}</p>
-<p><strong>Hora:</strong> {{ event.time }}</p>
-<p><strong>Lugar:</strong> {{ event.location }}</p>
-<p><strong>Tipo de Evento:</strong> {{ event.eventType }}</p>
 
-<h3>Lista de Regalos</h3>
-<ul>
-  <li *ngFor="let gift of gifts">
-    <p>{{ gift.name }} - {{ gift.description }}</p>
-    <button [disabled]="gift.isSelected" (click)="selectGift(gift)">
-      {{ gift.isSelected ? "Seleccionado" : "Seleccionar" }}
-    </button>
-  </li>
-</ul>
+<div class="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-100">
+  <h2 class="text-xl font-bold mb-2">Detalles del Evento</h2>
+  <p><strong>Nombre del Evento:</strong> {{ event.eventType }}</p>
+  <p><strong>Descripción:</strong> {{ event.description }}</p>
+  <p><strong>Fecha:</strong> {{ event.date }}</p>
+  <p><strong>Hora:</strong> {{ event.time }}</p>
+  <p><strong>Lugar:</strong> {{ event.location }}</p>
+</div>
+
+
+<table class="table-auto w-full">
+  <thead>
+    <tr>
+      <th class="px-4 py-2">Nombre del Regalo</th>
+      <th class="px-4 py-2">Descripción</th>
+      <th class="px-4 py-2">Estado</th>
+      <th class="px-4 py-2">Seleccionado por</th>
+      <th class="px-4 py-2">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let gift of gifts">
+      <td class="border px-4 py-2">{{ gift.name }}</td>
+      <td class="border px-4 py-2">{{ gift.description }}</td>
+      <td class="border px-4 py-2">
+        <button [disabled]="gift.isSelected" (click)="selectGift(gift)" class="bg-blue-500 text-white p-2">
+          {{ gift.isSelected ? "Seleccionado" : "Seleccionar" }}
+        </button>
+      </td>
+      <td class="border px-4 py-2">
+        <span *ngIf="gift.isSelected">
+          {{ gift.selectedBy?.nombre }} {{ gift.selectedBy?.apellido }}
+        </span>
+      </td>
+      <td class="border px-4 py-2">
+        <button *ngIf="gift.permalink" (click)="verProducto(gift.permalink)" class="bg-blue-500 text-white p-2">
+          Ver producto
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,13 +1,13 @@
-// Interfaz para representar a un usuario
+
 export interface User {
   id: string;
   name: string;
   email: string;
   password: string;
-  events: any[]; // Array de eventos asociados al usuario
+  events: any[]; 
 }
 
-// Interfaz para representar un evento
+
 export interface Event {
   id: string;
   eventType: string;
@@ -16,14 +16,21 @@ export interface Event {
   time: string;
   description: string;
   code: string;
-  userId: string; // ID del usuario que creó el evento
+  userId: string; 
 }
 
-// Interfaz para representar un regalo
+
 export interface Gift {
   id: string;
   name: string;
   description: string;
   isSelected: boolean;
-  eventId: string; // ID del evento al que está asociado el regalo
+  eventId: string;
+  permalink?: string; 
+  selectedBy?: {
+    nombre: string;
+    apellido: string;
+    dni: string;
+  };
 }
+

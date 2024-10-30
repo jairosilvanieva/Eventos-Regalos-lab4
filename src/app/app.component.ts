@@ -8,22 +8,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // Título de la aplicación
   title = 'lista-regalos';
 
-  // Constructor con inyección de dependencias
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Método para verificar si el usuario está autenticado
+ 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
 
-  // Método para cerrar sesión
+  
+  isGuestLoggedIn(): boolean {
+    return localStorage.getItem('nombreInvitado') !== null;
+  }
+
+  
   logout() {
-    // Llama al método logout del servicio de autenticación
     this.authService.logout();
-    // Redirige al usuario a la página principal
+    this.router.navigate(['/']);
+  }
+
+  
+  logoutGuest() {
+    
+    localStorage.removeItem('nombreInvitado');
+    localStorage.removeItem('apellidoInvitado');
+    localStorage.removeItem('dniInvitado');
+    localStorage.removeItem('eventCode');
+    
     this.router.navigate(['/']);
   }
 }

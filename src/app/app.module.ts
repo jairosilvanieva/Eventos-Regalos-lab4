@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -27,7 +27,7 @@ import { EventsComponent } from './components/events/events.component';
     BrowserModule,
     FormsModule,
     CommonModule,
-    HttpClientModule, // Añadir HttpClientModule para el uso de HttpClient
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],

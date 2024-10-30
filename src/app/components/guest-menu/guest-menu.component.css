@@ -1,0 +1,37 @@
+.event-details {
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .event-details h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  
+  .event-details p {
+    margin: 4px 0;
+  }
+  
+  .table-auto {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-auto th, .table-auto td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .table-auto th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  .table-auto tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  

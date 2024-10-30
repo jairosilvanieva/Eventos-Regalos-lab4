@@ -1,3 +1,54 @@
-:host {
+.container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.table-auto {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-auto th,
+.table-auto td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-auto th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+img {
+  max-width: 100px; /* Limitar el ancho máximo a 100px */
+  max-height: 100px; /* Limitar la altura máxima a 100px */
+  width: auto; /* Asegurarse de que las imágenes mantengan sus proporciones */
+  height: auto; /* Asegurarse de que las imágenes mantengan sus proporciones */
+  object-fit: contain; /* Hacer que las imágenes se ajusten dentro de su contenedor */
 }

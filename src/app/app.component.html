@@ -1,18 +1,24 @@
 <header class="p-4 bg-blue-500">
   <nav>
     <ul class="flex items-center justify-end gap-4 font-medium text-white">
-      <li>
+     
+      <li *ngIf="!isAuthenticated() && isGuestLoggedIn()">
+        <a (click)="logoutGuest()">Logout Invitado</a>
+      </li>
+
+     
+      <li *ngIf="isAuthenticated()">
+        <a (click)="logout()">Logout Usuario</a>
+      </li>
+
+      
+      <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
         <a routerLink="/guest">Ingresar como Invitado</a>
       </li>
-      <li><a routerLink="/register">Registro</a></li>
-      <li>
-        <a
-          class="cursor-pointer"
-          [routerLink]="isAuthenticated() ? null : '/login'"
-          (click)="isAuthenticated() ? logout() : null"
-          >{{ isAuthenticated() ? "Logout" : "Login" }}</a
-        >
-      </li>
+      <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
+        <a routerLink="/register">Registro</a></li>
+      <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
+        <a routerLink="/login">Login</a></li>
     </ul>
   </nav>
 </header>
