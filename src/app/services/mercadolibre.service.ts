@@ -6,12 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MercadoLibreService {
-  private apiUrl = 'https://api.mercadolibre.com/sites/MLA/search?q='; 
+  private apiUrl = 'https://api.mercadolibre.com/sites/MLA/search?q=';
 
   constructor(private http: HttpClient) {}
 
-  
-  searchProducts(query: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}${query}`);
+  searchProducts(query: string, limit: number, offset: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}${query}&limit=${limit}&offset=${offset}`);
   }
 }

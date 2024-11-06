@@ -53,9 +53,14 @@
       "id": "wskib6em4",
       "name": "Pelota Esferodinamia Everlast Yoga Gym Pilates 75cm Inflador Color Gris Oscuro",
       "description": "Producto de Mercado Libre - Precio: 34500",
-      "isSelected": false,
+      "isSelected": true,
       "eventId": "ru2g6la0x",
-      "permalink": "https://www.mercadolibre.com.ar/pelota-esferodinamia-everlast-yoga-gym-pilates-75cm-inflador-color-gris-oscuro/p/MLA36970464#wid=MLA1446267831&sid=unknown"
+      "permalink": "https://www.mercadolibre.com.ar/pelota-esferodinamia-everlast-yoga-gym-pilates-75cm-inflador-color-gris-oscuro/p/MLA36970464#wid=MLA1446267831&sid=unknown",
+      "selectedBy": {
+        "nombre": "fddtdtrdgdgf",
+        "apellido": "",
+        "dni": ""
+      }
     },
     {
       "id": "vovsusjhw",
@@ -119,6 +124,27 @@
       "isSelected": false,
       "eventId": "yfu5snhxz",
       "permalink": "https://auto.mercadolibre.com.ar/MLA-1945552190-chevrolet-montana-premier7-_JM"
+    },
+    {
+      "id": "rhax39nnc",
+      "name": "Peugeot 208 Allure Pk Mt 0km Entrega Inmediata Contado M ",
+      "description": "Producto de Mercado Libre - Precio: 26045000",
+      "isSelected": true,
+      "eventId": "ru2g6la0x",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1948568914-peugeot-208-allure-pk-mt-0km-entrega-inmediata-contado-m-_JM",
+      "selectedBy": {
+        "nombre": "fddtdtrdgdgf",
+        "apellido": "",
+        "dni": ""
+      }
+    },
+    {
+      "id": "71i46sntd",
+      "name": "Chevrolet Montana Lt Mt Sin Anticipo Y Con Credito Uva Dq #5",
+      "description": "Producto de Mercado Libre - Precio: 25999999",
+      "isSelected": false,
+      "eventId": "ru2g6la0x",
+      "permalink": "https://auto.mercadolibre.com.ar/MLA-1948672656-chevrolet-montana-lt-mt-sin-anticipo-y-con-credito-uva-dq-5-_JM"
     }
   ],
   "guests": [

@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventsService } from '../../services/events.service';
 import { AuthService } from '../../services/auth.service';
-import { Event } from '../../interfaces';
+import { Event } from 'app/interfaces/event.interface';
+
+
+
+
+
 
 @Component({
   selector: 'app-events',

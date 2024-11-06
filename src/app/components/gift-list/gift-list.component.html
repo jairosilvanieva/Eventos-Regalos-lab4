@@ -1,9 +1,7 @@
 <section class="container flex flex-col justify-between mt-12">
-  
   <div class="w-full mb-8">
     <h2 class="mb-6 text-2xl font-bold">Buscar productos</h2>
 
-    
     <div class="input-container mb-4">
       <input
         type="text"
@@ -16,12 +14,10 @@
       </button>
     </div>
 
-   
     <div *ngIf="isLoading" class="mt-4">
       <p>Cargando productos...</p>
     </div>
 
-   
     <div *ngIf="products.length > 0; else noProducts" class="mt-6">
       <ul class="flex flex-col gap-4">
         <li
@@ -37,15 +33,24 @@
           </div>
         </li>
       </ul>
+
+      <!-- Paginación -->
+      <div class="flex justify-between mt-4">
+        <button (click)="prevPage()" [disabled]="currentPage === 1" class="bg-blue-500 text-white p-2">
+          Página Anterior
+        </button>
+        <span>Página {{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage * pageSize >= totalProducts" class="bg-blue-500 text-white p-2">
+          Página Siguiente
+        </button>
+      </div>
     </div>
 
-   
     <ng-template #noProducts>
       <p>No se encontraron productos.</p>
     </ng-template>
   </div>
 
- 
   <div class="w-full">
     <h2 class="mb-6 text-2xl font-bold">Lista de Regalos</h2>
     <table class="table-auto w-full border-collapse border border-gray-800">

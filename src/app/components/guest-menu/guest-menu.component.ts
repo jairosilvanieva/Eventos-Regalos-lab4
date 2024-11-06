@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../services/events.service';
 import { GiftsService } from '../../services/gifts.service';
-import { Event, Gift } from '../../interfaces';
+import { Event } from 'app/interfaces/event.interface';
+import { Gift } from 'app/interfaces/gift.interface';
+
 
 @Component({
   selector: 'app-guest-menu',

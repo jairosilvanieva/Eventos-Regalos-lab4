@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GiftsService } from '../../services/gifts.service';
 import { MercadoLibreService } from '../../services/mercadolibre.service';
-import { Gift } from '../../interfaces';
+
+import { Gift } from 'app/interfaces/gift.interface';
+
+
 
 @Component({
   selector: 'app-gift-list',
@@ -25,6 +28,11 @@ export class GiftListComponent implements OnInit {
   searchTerm: string = '';
   isLoading: boolean = false; 
 
+  // Paginación
+  currentPage: number = 1;
+  pageSize: number = 5; 
+  totalProducts: number = 0;
+
   private routeSub: Subscription = new Subscription();
 
   constructor(
@@ -34,14 +42,12 @@ export class GiftListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     this.routeSub = this.route.params.subscribe((params) => {
       this.eventId = params['eventId'];
       this.loadGifts();
     });
   }
 
-  
   loadGifts(): void {
     if (this.eventId) {
       this.giftsService.getGiftsByEvent(this.eventId).subscribe((data: Gift[]) => {
@@ -50,7 +56,6 @@ export class GiftListComponent implements OnInit {
     }
   }
 
-  
   addProductAsGift(product: any): void {
     const gift: Gift = {
       id: this.generateUniqueId(),
@@ -66,19 +71,18 @@ export class GiftListComponent implements OnInit {
       this.loadGifts(); 
     });
   }
-  
 
- 
   generateUniqueId(): string {
     return Math.random().toString(36).substr(2, 9);
   }
 
-  
   searchProducts(query: string): void {
     this.isLoading = true;
-    this.mercadoLibreService.searchProducts(query).subscribe(
+    const offset = (this.currentPage - 1) * this.pageSize;
+    this.mercadoLibreService.searchProducts(query, this.pageSize, offset).subscribe(
       (response: any) => {
         this.products = response.results;
+        this.totalProducts = response.paging.total;
         this.isLoading = false;
       },
       (error) => {
@@ -88,26 +92,36 @@ export class GiftListComponent implements OnInit {
     );
   }
 
-  
   onSearch(): void {
     if (this.searchTerm) {
+      this.currentPage = 1;
       this.searchProducts(this.searchTerm);
     }
   }
 
-  
+  nextPage(): void {
+    if (this.currentPage * this.pageSize < this.totalProducts) {
+      this.currentPage++;
+      this.searchProducts(this.searchTerm);
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.searchProducts(this.searchTerm);
+    }
+  }
+
   getGiftStatus(gift: Gift): string {
     return gift.isSelected ? 'No disponible' : 'Disponible';
   }
 
- 
   getGuestWhoSelectedGift(gift: Gift): string {
-   
     return gift.isSelected ? 'Seleccionado por: [Nombre del invitado]' : 'Disponible';
   }
 
   ngOnDestroy(): void {
-    
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
