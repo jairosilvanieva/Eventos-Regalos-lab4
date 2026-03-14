@@ -1,43 +1,73 @@
+<div class="max-w-6xl mx-auto w-full px-6 py-10">
+  <div class="flex items-center justify-between mb-10">
+    <h2 class="text-3xl font-bold text-gray-800">Elegí un regalo para este evento</h2>
+    <div class="text-right">
+      <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Invitado</p>
+      <p class="text-blue-600 font-bold">¡Hola!</p>
+    </div>
+  </div>
 
-<div class="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-100">
-  <h2 class="text-xl font-bold mb-2">Detalles del Evento</h2>
-  <p><strong>Nombre del Evento:</strong> {{ event.eventType }}</p>
-  <p><strong>Descripción:</strong> {{ event.description }}</p>
-  <p><strong>Fecha:</strong> {{ event.date }}</p>
-  <p><strong>Hora:</strong> {{ event.time }}</p>
-  <p><strong>Lugar:</strong> {{ event.location }}</p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div *ngFor="let gift of gifts"
+      class="flex flex-col bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md"
+      [class.opacity-75]="gift.isSelected">
+
+      <!-- Cabecera de la tarjeta -->
+      <div class="p-6 flex-1 flex flex-col">
+        <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-4 text-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2 truncate" [title]="gift.name">{{ gift.name }}</h3>
+        <p class="text-sm text-gray-500 line-clamp-3 mb-6 flex-1">{{ gift.description }}</p>
+
+        <!-- Info de selección -->
+        <div *ngIf="gift.isSelected" class="bg-gray-50 rounded-lg p-3 flex items-center gap-3 mb-4">
+          <div
+            class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-xs font-bold text-gray-400 border border-gray-200 shadow-sm">
+            {{ gift.selectedBy?.nombre?.charAt(0) }}
+          </div>
+          <div class="text-xs">
+            <p class="text-gray-400 font-bold uppercase tracking-tighter">Elegido por</p>
+            <p class="text-gray-700 font-semibold">{{ gift.selectedBy?.nombre }} {{ gift.selectedBy?.apellido }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer / Acción -->
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+        <div class="flex items-center justify-between gap-4">
+          <button [disabled]="gift.isSelected" (click)="selectGift(gift)"
+            class="flex-1 !py-2.5 !text-xs !uppercase !tracking-widest !font-bold rounded-lg transition-all duration-300"
+            [ngClass]="gift.isSelected ? '!bg-gray-200 !text-gray-400 !cursor-not-allowed shadow-none' : '!bg-blue-600 hover:!bg-blue-700 !text-white shadow-sm'">
+            {{ gift.isSelected ? "Ya seleccionado" : "Lo quiero regalar" }}
+          </button>
+
+          <button *ngIf="gift.permalink" (click)="verProducto(gift.permalink)"
+            class="p-2.5 text-blue-500 hover:bg-blue-100 rounded-lg transition-colors border border-blue-200"
+            title="Ver detalle del producto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="gifts.length === 0" class="text-center py-20 bg-white rounded-2xl shadow-sm border border-gray-100">
+    <div class="text-gray-200 mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-800 mb-2">Aún no hay regalos en esta lista</h3>
+    <p class="text-gray-500">Vuelve a consultar más tarde.</p>
+  </div>
 </div>
-
-
-<table class="table-auto w-full">
-  <thead>
-    <tr>
-      <th class="px-4 py-2">Nombre del Regalo</th>
-      <th class="px-4 py-2">Descripción</th>
-      <th class="px-4 py-2">Estado</th>
-      <th class="px-4 py-2">Seleccionado por</th>
-      <th class="px-4 py-2">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let gift of gifts">
-      <td class="border px-4 py-2">{{ gift.name }}</td>
-      <td class="border px-4 py-2">{{ gift.description }}</td>
-      <td class="border px-4 py-2">
-        <button [disabled]="gift.isSelected" (click)="selectGift(gift)" class="bg-blue-500 text-white p-2">
-          {{ gift.isSelected ? "Seleccionado" : "Seleccionar" }}
-        </button>
-      </td>
-      <td class="border px-4 py-2">
-        <span *ngIf="gift.isSelected">
-          {{ gift.selectedBy?.nombre }} {{ gift.selectedBy?.apellido }}
-        </span>
-      </td>
-      <td class="border px-4 py-2">
-        <button *ngIf="gift.permalink" (click)="verProducto(gift.permalink)" class="bg-blue-500 text-white p-2">
-          Ver producto
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>

@@ -1,38 +1,95 @@
-<section class="container flex items-start justify-between mt-12">
-  <div>
-    <h2 class="mb-6 text-2xl font-bold">Eventos creados</h2>
-    <ul class="flex flex-col gap-4 text-left">
-      <li *ngFor="let event of events">
-        {{ event.eventType }} - Código: {{ event.code }} <br />
-        <button (click)="selectGifts(event.id)">Elegir Regalos</button>
-      </li>
-    </ul>
-  </div>
+<div class="max-w-6xl mx-auto w-full px-6 py-10">
+  <div class="flex flex-col lg:flex-row gap-10">
 
-  <div>
-    <h2 class="mb-6 text-2xl font-bold">Crear un nuevo evento</h2>
-    <form (ngSubmit)="createEvent()" class="mt-0">
-      <div class="input-container">
-        <label for="tipoEvento">Tipo de Evento:</label>
-        <input [(ngModel)]="eventType" id="tipoEvento" name="tipoEvento" required type="text" />
+    <!-- Lista de Eventos -->
+    <div class="w-full lg:w-3/5">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 m-0">Mis Eventos</h2>
+        <span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{
+          events.length }} Activo(s)</span>
       </div>
-      <div class="input-container">
-        <label for="lugar">Lugar:</label>
-        <input [(ngModel)]="location" id="lugar" name="lugar" required type="text" />
+
+      <div class="grid grid-cols-1 gap-4">
+        <div *ngFor="let event of events"
+          class="card hover:shadow-md transition-shadow duration-200 !mb-0 flex items-center justify-between group">
+          <div class="flex items-center gap-5">
+            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-blue-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-800">{{ event.eventType }}</h3>
+              <p class="text-sm text-gray-500 font-mono uppercase tracking-tighter">Código: <span
+                  class="bg-gray-100 px-2 py-0.5 rounded text-blue-600 font-bold">{{ event.code }}</span></p>
+            </div>
+          </div>
+
+          <button (click)="selectGifts(event.id)" class="!py-2 !px-4 !text-xs !bg-blue-600 hover:!bg-blue-700">
+            Gestionar Regalos
+          </button>
+        </div>
+
+        <div *ngIf="events.length === 0"
+          class="card border-dashed border-2 border-gray-200 flex flex-col items-center justify-center py-16 text-center">
+          <div class="text-gray-300 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p class="text-gray-500 font-medium">Aún no has creado ningún evento</p>
+          <p class="text-gray-400 text-sm">Completá el formulario para empezar</p>
+        </div>
       </div>
-      <div class="input-container">
-        <label for="fecha">Fecha:</label>
-        <input [(ngModel)]="date" id="fecha" name="fecha" required type="date" />
+    </div>
+
+    <!-- Formulario de Creación -->
+    <div class="w-full lg:w-2/5">
+      <div class="card !p-8 shadow-lg ring-1 ring-gray-100 sticky top-24">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Crear Nuevo Evento</h2>
+
+        <form [formGroup]="eventForm" (ngSubmit)="createEvent()"
+          class="!mt-0 !p-0 !shadow-none !border-none !max-w-none">
+          <div class="input-container mb-4">
+            <label for="tipoEvento">¿Qué vas a celebrar?</label>
+            <input formControlName="eventType" id="tipoEvento" type="text" placeholder="Ej: Boda, Cumpleaños..." />
+            <div *ngIf="eventForm.get('eventType')?.invalid && eventForm.get('eventType')?.touched"
+              class="text-red-500 text-xs mt-1">
+              Mínimo 3 caracteres.
+            </div>
+          </div>
+
+          <div class="input-container mb-4">
+            <label for="lugar">¿Dónde será?</label>
+            <input formControlName="location" id="lugar" type="text" placeholder="Ej: Salón Las Palmeras" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="input-container">
+              <label for="fecha">Día</label>
+              <input formControlName="date" id="fecha" type="date" />
+            </div>
+            <div class="input-container">
+              <label for="hora">Hora</label>
+              <input formControlName="time" id="hora" type="time" />
+            </div>
+          </div>
+
+          <div class="input-container mb-6">
+            <label for="descripcion">Unas palabras para tus invitados</label>
+            <textarea formControlName="description" id="descripcion" rows="3"
+              placeholder="Contanos de qué se trata el evento..."></textarea>
+          </div>
+
+          <button type="submit" [disabled]="eventForm.invalid" class="w-full !py-3">
+            Crear mi evento
+          </button>
+        </form>
       </div>
-      <div class="input-container">
-        <label for="hora">Hora:</label>
-        <input [(ngModel)]="time" id="hora" name="hora" required type="time" />
-      </div>
-      <div class="input-container">
-        <label for="descripcion">Descripción:</label>
-        <textarea [(ngModel)]="description" id="descripcion" name="descripcion" required></textarea>
-      </div>
-      <button type="submit">Crear Evento</button>
-    </form>
+    </div>
   </div>
-</section>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs'; 
 import { map, catchError } from 'rxjs/operators'; 
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +13,19 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  
+ 
   login(email: string, password: string): Observable<string | null> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map((users: any[]) => {
-        const user = users.find((u: any) => u.email === email && u.password === password);
-        return user ? user.id : null;
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map((users: User[]): string | null => {
+        const user = users.find((u: User) => u.email === email && u.password === password);
+        return user?.id ?? null; 
       }),
       catchError(() => of(null))
     );
   }
+  
 
- 
+  
   saveSession(userId: string): void {
     localStorage.setItem('userId', userId);
   }
@@ -39,13 +41,13 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
- 
+  
   isAuthenticated(): boolean {
     return localStorage.getItem('userId') !== null;
   }
 
   
-  registerUser(user: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, user);
+  registerUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}`, user);
   }
 }

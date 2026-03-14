@@ -6,19 +6,23 @@ import { GuestComponent } from './components/guest/guest.component';
 import { LoginComponent } from './components/login/login.component';
 import { GuestMenuComponent } from './components/guest-menu/guest-menu.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
+import { GuestGuard } from './guards/guest.guard';
+import { UnauthGuard } from './guards/unauth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'events', component: EventsComponent },
-  { path: 'events/:eventId/gifts', component: GiftListComponent },
-  { path: 'guest', component: GuestComponent },
-  { path: 'guest/events/:eventId/gifts', component: GuestMenuComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [UnauthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [UnauthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
+  { path: 'events/:eventId/gifts', component: GiftListComponent, canActivate: [AuthGuard] },
+  { path: 'guest', component: GuestComponent, canActivate: [UnauthGuard] },
+  { path: 'guest/events/:eventId/gifts', component: GuestMenuComponent, canActivate: [GuestGuard] },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

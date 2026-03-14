@@ -1,36 +1,108 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Estilos Globales - Inspiración Mercado Libre */
 body {
-  font-family: "Roboto", sans-serif;
+  background-color: #ebebeb; /* Gris claro característico */
+  color: #333333;
+  font-family: 'Inter', 'Roboto', sans-serif;
   @apply antialiased;
+  margin: 0;
+  padding: 0;
 }
 
-label {
-  @apply text-base font-semibold;
+header {
+  background-color: #fff159; /* Amarillo Mercado Libre */
+  color: #333;
+  @apply shadow-sm;
 }
 
-input,
-textarea {
-  @apply border border-gray-800 rounded-md py-2 px-3 text-sm;
-  &:focus {
-    @apply border-blue-500 outline-none ring-blue-400 ring-1;
+nav ul {
+  @apply flex items-center justify-between gap-6 py-3 max-w-6xl mx-auto px-4;
+}
+
+nav ul li a {
+  @apply font-normal text-gray-800 text-sm transition-all duration-200 cursor-pointer;
+  &:hover {
+    @apply text-blue-600;
   }
 }
 
-form {
-  @apply flex flex-col items-center gap-4 p-4 mx-auto mt-12 border border-gray-400 rounded-md w-96;
+/* Títulos */
+h1, h2, h3 {
+  @apply font-semibold text-gray-800 tracking-tight;
 }
 
-button,
-.button {
-  @apply bg-blue-500 text-white py-2 px-3 font-medium uppercase rounded-md;
+h1 { @apply text-3xl mb-4; }
+h2 { @apply text-2xl mb-4; }
+
+/* Contenedores y Tarjetas */
+.card {
+  @apply bg-white rounded-md shadow-sm p-6 mb-6 border-b border-gray-200;
+}
+
+/* Formularios Modernos */
+form {
+  @apply bg-white p-8 rounded-lg shadow-md max-w-md mx-auto mt-12 flex flex-col gap-5 border border-gray-200;
 }
 
 .input-container {
-  @apply flex flex-col w-full gap-2;
+  @apply flex flex-col w-full gap-1.5;
+}
+
+label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+input,
+textarea,
+select {
+  @apply border border-gray-300 rounded-md py-2.5 px-4 text-sm text-gray-800 bg-white transition-all duration-200;
+  &:focus {
+    @apply border-blue-500 outline-none ring-2 ring-blue-500/20;
+  }
+}
+
+/* Botones Estilo ML */
+button,
+.button {
+  @apply bg-blue-500 text-white py-2.5 px-6 font-semibold text-sm rounded-md transition-all duration-200 text-center uppercase tracking-wide;
+  &:hover {
+    @apply bg-blue-600 shadow-md;
+  }
+  &:disabled {
+    @apply bg-gray-300 text-gray-500 cursor-not-allowed shadow-none;
+  }
+}
+
+/* Botones Secundarios */
+.button-secondary {
+  @apply bg-transparent text-blue-500 border border-blue-500 hover:bg-blue-50;
+}
+
+/* Tablas Modernas */
+table {
+  @apply w-full bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200;
+}
+
+th {
+  @apply bg-gray-50 text-gray-600 text-xs uppercase font-bold px-6 py-4 text-left border-b border-gray-200;
+}
+
+td {
+  @apply px-6 py-4 text-sm text-gray-800 border-b border-gray-100;
+}
+
+tr:hover td {
+  @apply bg-gray-50/50;
+}
+
+/* Badges de Estado */
+.badge-available {
+  @apply bg-green-100 text-green-700 px-2.5 py-1 rounded-full text-xs font-semibold;
+}
+
+.badge-selected {
+  @apply bg-red-100 text-red-700 px-2.5 py-1 rounded-full text-xs font-semibold;
 }

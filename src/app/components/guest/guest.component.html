@@ -1,47 +1,47 @@
-<form (ngSubmit)="ingresarComoInvitado()">
-  <div class="input-container">
-    <label for="codigo">Código del Evento:</label>
-    <input
-      [(ngModel)]="eventCode"
-      id="codigo"
-      name="codigoEvento"
-      required
-      type="text"
-    />
-  </div>
+<div class="w-full max-w-lg mx-auto mt-12 p-4">
+  <div class="card bg-white shadow-lg rounded-lg border border-gray-100 p-8 text-center">
+    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">Ingresar a un evento</h2>
+    <p class="text-gray-500 text-sm mb-8">Ingresá el código del evento y tus datos para ver la lista de regalos</p>
 
-  <div class="input-container">
-    <label for="nombre">Nombre:</label>
-    <input
-      [(ngModel)]="nombreInvitado"
-      id="nombre"
-      name="nombreInvitado"
-      required
-      type="text"
-    />
-  </div>
+    <form [formGroup]="guestForm" (ngSubmit)="ingresarComoInvitado()"
+      class="!mt-0 !p-0 !shadow-none !border-none !max-w-none text-left">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="input-container col-span-1 md:col-span-2">
+          <label for="codigo" class="text-xs font-bold uppercase text-gray-500 tracking-wider">Código del Evento</label>
+          <input formControlName="eventCode" id="codigo" type="text" placeholder="Ej: ABC-123"
+            class="font-mono text-lg uppercase tracking-widest text-blue-600" />
+          <div *ngIf="guestForm.get('eventCode')?.invalid && guestForm.get('eventCode')?.touched"
+            class="text-red-500 text-xs mt-1">
+            El código es obligatorio.
+          </div>
+        </div>
 
-  <div class="input-container">
-    <label for="apellido">Apellido:</label>
-    <input
-      [(ngModel)]="apellidoInvitado"
-      id="apellido"
-      name="apellidoInvitado"
-      required
-      type="text"
-    />
-  </div>
+        <div class="input-container">
+          <label for="nombre" class="text-xs font-bold uppercase text-gray-500 tracking-wider">Nombre</label>
+          <input formControlName="nombreInvitado" id="nombre" type="text" placeholder="Juan" />
+        </div>
 
-  <div class="input-container">
-    <label for="dni">DNI:</label>
-    <input
-      [(ngModel)]="dniInvitado"
-      id="dni"
-      name="dniInvitado"
-      required
-      type="text"
-    />
-  </div>
+        <div class="input-container">
+          <label for="apellido" class="text-xs font-bold uppercase text-gray-500 tracking-wider">Apellido</label>
+          <input formControlName="apellidoInvitado" id="apellido" type="text" placeholder="Pérez" />
+        </div>
 
-  <button type="submit">Ingresar</button>
-</form>
+        <div class="input-container col-span-1 md:col-span-2">
+          <label for="dni" class="text-xs font-bold uppercase text-gray-500 tracking-wider">DNI</label>
+          <input formControlName="dniInvitado" id="dni" type="text" placeholder="12.345.678" />
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="guestForm.invalid" class="w-full py-3">
+        Entrar al evento
+      </button>
+    </form>
+  </div>
+</div>

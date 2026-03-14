@@ -5,8 +5,7 @@ import { GiftsService } from '../../services/gifts.service';
 import { MercadoLibreService } from '../../services/mercadolibre.service';
 
 import { Gift } from 'app/interfaces/gift.interface';
-
-
+import { Product, ProductSearchResponse } from 'app/interfaces/product.interface';
 
 @Component({
   selector: 'app-gift-list',
@@ -14,8 +13,8 @@ import { Gift } from 'app/interfaces/gift.interface';
   styleUrls: ['./gift-list.component.css'],
 })
 export class GiftListComponent implements OnInit {
-  gifts: Gift[] = []; 
-  eventId: string = ''; 
+  gifts: Gift[] = [];
+  eventId: string = '';
   newGift: Gift = {
     id: '',
     name: '',
@@ -24,13 +23,13 @@ export class GiftListComponent implements OnInit {
     eventId: '',
   };
 
-  products: any[] = []; 
+  products: Product[] = [];
   searchTerm: string = '';
-  isLoading: boolean = false; 
+  isLoading: boolean = false;
 
-  // Paginación
+
   currentPage: number = 1;
-  pageSize: number = 5; 
+  pageSize: number = 5;
   totalProducts: number = 0;
 
   private routeSub: Subscription = new Subscription();
@@ -39,7 +38,7 @@ export class GiftListComponent implements OnInit {
     private giftsService: GiftsService,
     private route: ActivatedRoute,
     private mercadoLibreService: MercadoLibreService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe((params) => {
@@ -56,19 +55,19 @@ export class GiftListComponent implements OnInit {
     }
   }
 
-  addProductAsGift(product: any): void {
+  addProductAsGift(product: Product): void {
     const gift: Gift = {
       id: this.generateUniqueId(),
       name: product.title,
-      description: `Producto de Mercado Libre - Precio: ${product.price}`,
+      description: `${product.description} - Precio: $${product.price}`,
       isSelected: false,
       eventId: this.eventId,
-      permalink: product.permalink 
+      permalink: `https://catalogo-productos.com/p/${product.id}`
     };
-  
+
     this.giftsService.addGift(gift).subscribe(() => {
       alert('Producto añadido como regalo');
-      this.loadGifts(); 
+      this.loadGifts();
     });
   }
 
@@ -80,9 +79,9 @@ export class GiftListComponent implements OnInit {
     this.isLoading = true;
     const offset = (this.currentPage - 1) * this.pageSize;
     this.mercadoLibreService.searchProducts(query, this.pageSize, offset).subscribe(
-      (response: any) => {
-        this.products = response.results;
-        this.totalProducts = response.paging.total;
+      (response: ProductSearchResponse) => {
+        this.products = response.products;
+        this.totalProducts = response.total;
         this.isLoading = false;
       },
       (error) => {

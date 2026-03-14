@@ -1,24 +1,37 @@
-<header class="p-4 bg-blue-500">
-  <nav>
-    <ul class="flex items-center justify-end gap-4 font-medium text-white">
-     
-      <li *ngIf="!isAuthenticated() && isGuestLoggedIn()">
-        <a (click)="logoutGuest()">Logout Invitado</a>
-      </li>
+<header class="bg-[#fff159] sticky top-0 z-50">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
+    <!-- Logo Ficticio -->
+    <div class="flex items-center gap-2 cursor-pointer" routerLink="/">
+      <div
+        class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">
+        L</div>
+      <span class="text-xl font-bold text-gray-800 tracking-tight hidden sm:block">Lista<span
+          class="text-blue-600 font-extrabold text-2xl leading-none">Regalos</span></span>
+    </div>
 
-     
+    <!-- Menú -->
+    <ul class="flex items-center gap-6">
+      <li *ngIf="!isAuthenticated() && isGuestLoggedIn()" class="group">
+        <a (click)="logoutGuest()"
+          class="text-gray-800 hover:text-blue-600 flex items-center gap-1 font-medium text-sm transition-all duration-200 underline decoration-transparent hover:decoration-blue-600 underline-offset-4">Salir
+          Invitado</a>
+      </li>
       <li *ngIf="isAuthenticated()">
-        <a (click)="logout()">Logout Usuario</a>
+        <a (click)="logout()"
+          class="text-gray-800 hover:text-blue-600 flex items-center gap-1 font-medium text-sm transition-all duration-200 underline decoration-transparent hover:decoration-blue-600 underline-offset-4">Cerrar
+          Sesión</a>
       </li>
 
-      
       <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
-        <a routerLink="/guest">Ingresar como Invitado</a>
+        <a routerLink="/guest" class="text-gray-800 hover:text-blue-600 font-medium text-sm">Entrar como Invitado</a>
       </li>
       <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
-        <a routerLink="/register">Registro</a></li>
+        <a routerLink="/register" class="text-gray-800 hover:text-blue-600 font-medium text-sm">Crea tu cuenta</a>
+      </li>
       <li *ngIf="!isAuthenticated() && !isGuestLoggedIn()">
-        <a routerLink="/login">Login</a></li>
+        <a routerLink="/login"
+          class="bg-blue-600 text-white px-5 py-2 rounded-md font-bold text-sm hover:bg-blue-700 transition-colors shadow-sm">Ingresá</a>
+      </li>
     </ul>
   </nav>
 </header>

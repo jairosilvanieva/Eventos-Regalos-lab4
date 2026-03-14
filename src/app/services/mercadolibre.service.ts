@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ProductSearchResponse } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MercadoLibreService {
-  private apiUrl = 'https://api.mercadolibre.com/sites/MLA/search?q=';
+  private readonly PRODUCT_ENDPOINT = 'https://dummyjson.com/products/search';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  searchProducts(query: string, limit: number, offset: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}${query}&limit=${limit}&offset=${offset}`);
+  searchProducts(query: string, limit: number, offset: number): Observable<ProductSearchResponse> {
+    return this.http.get<ProductSearchResponse>(`${this.PRODUCT_ENDPOINT}?q=${query}&limit=${limit}&skip=${offset}`);
   }
 }

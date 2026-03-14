@@ -1,17 +1,37 @@
-<form (ngSubmit)="login()">
-  <div class="input-container">
-    <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="email" name="email" required />
+<div class="w-full max-w-md mx-auto mt-16 p-4">
+  <div class="card bg-white shadow-lg rounded-lg border border-gray-100 p-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">¡Hola! Ingresá tu e-mail y contraseña</h2>
+    <p class="text-gray-500 text-sm mb-8 text-center">Para gestionar tus listas de regalos</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="!mt-0 !p-0 !shadow-none !border-none !max-w-none">
+      <div class="input-container mb-6">
+        <label for="email" class="text-xs font-bold uppercase text-gray-500 tracking-wider">E-mail</label>
+        <input id="email" formControlName="email" type="email" placeholder="Ej: jairo@ejemplo.com"
+          class="focus:ring-2 focus:ring-blue-500/20" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          class="text-red-500 text-xs mt-1">
+          Email válido es requerido.
+        </div>
+      </div>
+
+      <div class="input-container mb-8">
+        <label for="password" class="text-xs font-bold uppercase text-gray-500 tracking-wider">Contraseña</label>
+        <input id="password" formControlName="password" type="password" placeholder="Tu contraseña"
+          class="focus:ring-2 focus:ring-blue-500/20" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          class="text-red-500 text-xs mt-1">
+          Contraseña es requerida.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="w-full">
+        Continuar
+      </button>
+
+      <div class="mt-6 text-center">
+        <a routerLink="/register"
+          class="text-blue-500 text-sm font-semibold hover:text-blue-600 transition-colors">Crear cuenta</a>
+      </div>
+    </form>
   </div>
-  <div class="input-container">
-    <label class="" for="password">Password:</label>
-    <input
-      [(ngModel)]="password"
-      id="password"
-      name="password"
-      required
-      type="password"
-    />
-  </div>
-  <button type="submit">Iniciar Sesión</button>
-</form>
+</div>

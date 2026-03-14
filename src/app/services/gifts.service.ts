@@ -1,53 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-// Interfaz para los regalos
-interface Gift {
-  id: string;
-  name: string;
-  description: string;
-  isSelected: boolean;
-  eventId: string;
-}
+import { Gift } from '../interfaces/gift.interface';
+import { Event } from '../interfaces/event.interface';
+import { Guest } from '../interfaces/guest.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GiftsService {
-  private apiUrl = 'http://localhost:3000/gifts'; 
-  private eventsUrl = 'http://localhost:3000/events'; 
-  private guestsUrl = 'http://localhost:3000/guests'; 
+  private apiUrl = 'http://localhost:3000/gifts';
+  private eventsUrl = 'http://localhost:3000/events';
+  private guestsUrl = 'http://localhost:3000/guests';
+
   constructor(private http: HttpClient) {}
 
-  
   getGiftsByEvent(eventId: string): Observable<Gift[]> {
     return this.http.get<Gift[]>(`${this.apiUrl}?eventId=${eventId}`);
   }
 
- 
-addGift(gift: Gift): Observable<Gift> {
-  return this.http.post<Gift>(this.apiUrl, gift);
-}
-
-
-updateGift(gift: Gift): Observable<Gift> {
-  return this.http.put<Gift>(`${this.apiUrl}/${gift.id}`, gift);
-}
-
-
-  
-  verifyEventCode(code: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.eventsUrl}?code=${code}`);
+  addGift(gift: Gift): Observable<Gift> {
+    return this.http.post<Gift>(this.apiUrl, gift);
   }
 
-  
-  registerGuest(guest: any): Observable<any> {
-    return this.http.post<any>(this.guestsUrl, guest);
+  updateGift(gift: Gift): Observable<Gift> {
+    return this.http.put<Gift>(`${this.apiUrl}/${gift.id}`, gift);
   }
 
-  
-  verifyGuest(guest: any): Observable<any[]> {
-    return this.http.get<any[]>(`${this.guestsUrl}?dni=${guest.dni}&eventId=${guest.eventId}`);
+  verifyEventCode(code: string): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.eventsUrl}?code=${code}`);
+  }
+
+  registerGuest(guest: Guest): Observable<Guest> {
+    return this.http.post<Guest>(this.guestsUrl, guest);
+  }
+
+  verifyGuest(guest: Guest): Observable<Guest[]> {
+    return this.http.get<Guest[]>(`${this.guestsUrl}?dni=${guest.dni}&eventId=${guest.eventId}`);
   }
 }
